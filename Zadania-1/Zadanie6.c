@@ -6,7 +6,7 @@
 #define MAX_ROUNDS 3
 
 // Funkcja do losowego wyboru ruchu komputera (kamień, papier, nożyce)
-int komputerWybor() {
+int komputerRuch() {
     return rand() % 3; // 0 - kamień, 1 - papier, 2 - nożyce
 }
 
@@ -45,7 +45,7 @@ int main() {
             continue;
         }
 
-        ruchyKomputera[iloscRund] = komputerWybor();
+        ruchyKomputera[iloscRund] = komputerRuch();
         printf("Komputer wybral: %d\n", ruchyKomputera[iloscRund]);
 
         wyniki[iloscRund] = wynikRundy(ruchyGracza[iloscRund], ruchyKomputera[iloscRund]);
@@ -60,21 +60,22 @@ int main() {
         iloscRund++;
 
         char komenda[10];
-        printf("\nCzy chcesz zakonczyc gre(wpisz 'tak' lub 'nie')? ");
+        printf("\nCzy chcesz zakończyć grę czy wyświetlić wyniki (wpisz 'quit' lub 'scores')? ");
         scanf("%s", komenda);
 
-        if (strcmp(komenda, "tak") == 0) {
+        if (strcmp(komenda, "quit") == 0) {
             break;
-        }
-        printf("\nWyniki rund:\n");
-        for (int i = 0; i < iloscRund; i++) {
-            printf("Runda %d: Gracz %d vs Komputer %d - ", i + 1, ruchyGracza[i], ruchyKomputera[i]);
-            if (wyniki[i] == 1) {
-                printf("Wygrales!\n");
-            } else if (wyniki[i] == -1) {
-                printf("Komputer wygral!\n");
-            } else {
-                printf("Remis.\n");
+        } else if (strcmp(komenda, "scores") == 0) {
+            printf("\nWyniki rund:\n");
+            for (int i = 0; i < iloscRund; i++) {
+                printf("Runda %d: Gracz %d vs Komputer %d - ", i + 1, ruchyGracza[i], ruchyKomputera[i]);
+                if (wyniki[i] == 1) {
+                    printf("Wygrałeś!\n");
+                } else if (wyniki[i] == -1) {
+                    printf("Komputer wygrał!\n");
+                } else {
+                    printf("Remis.\n");
+                }
             }
         }
     }

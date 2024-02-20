@@ -16,4 +16,5 @@ int main(){
     }
     char stayclosed[999]; 
     scanf("%s", stayclosed);
+    return 0;
 }

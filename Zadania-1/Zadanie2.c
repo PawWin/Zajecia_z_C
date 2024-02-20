@@ -2,14 +2,11 @@
 
 int main(){
 
-     int grades[2][5]= {
-        {5,5,4,3,2},
-        {3,3,4,2,5}
+    int grades[2][5]= {
+        {5,5,4,3,2}, //Oceny z Matematyki
+        {3,3,4,2,5}  //Oceny z Fizyki
     };
     float srednia[2] = {0};
-
-    
-    
     for(int i = 0; i < 2; i++) {
         for (int j = 0; j < 5; j++) {
             srednia[i] += grades[i][j];
