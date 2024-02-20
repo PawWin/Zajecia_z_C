@@ -3,7 +3,6 @@
 
 
 int main(){
-    //Zadanie 1
     char name[100]; 
     printf("Podaj swoje imie: ");
     scanf("%s", name);
