@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdbool.h>
-void swap(int* xp, int* yp)
+void swap(int* x, int* y)
 {
-    int temp = *xp;
-    *xp = *yp;
-    *yp = temp;
+    int temp = *x;
+    *x = *y;
+    *y = temp;
 }
 
 // An optimized version of Bubble Sort
@@ -20,9 +20,6 @@ void bubbleSort(int arr[], int n)
                 swapped = true;
             }
         }
-
-        // If no two elements were swapped by inner loop,
-        // then break
         if (swapped == false)
             break;
     }
