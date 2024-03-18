@@ -6,8 +6,8 @@ void swap(int *a, int *b){
     *b = temp;
 }
 
-int duplicate(const int *array, int i, int start){
-    for(int j = start; j < i; j++){
+int duplicate(const int *array, int i, int left){
+    for(int j = left; j < i; j++){
         if (array[j] == array[i]){
             return 1;
         }

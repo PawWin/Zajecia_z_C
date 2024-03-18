@@ -1,15 +1,15 @@
 #include <stdio.h>
 
-int binary_search_recursive(int *arr, int left, int right, int target) {
+int binary_search_recursive(int *arr, int left, int right, int searchValue) {
     if (right >= left) {
         int mid = left + (right - left) / 2;
-        if (arr[mid] == target) {
+        if (arr[mid] == searchValue) {
             return mid;
         }
-        if (arr[mid] > target) {
-            return binary_search_recursive(arr, left, mid - 1, target);
+        if (arr[mid] > searchValue) {
+            return binary_search_recursive(arr, left, mid - 1, searchValue);
         }
-        return binary_search_recursive(arr, mid + 1, right, target);
+        return binary_search_recursive(arr, mid + 1, right, searchValue);
     }
     return -1;
 }
