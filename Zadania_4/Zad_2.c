@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int binary_search_recursive(int arr[], int left, int right, int target) {
+int binary_search_recursive(int *arr, int left, int right, int target) {
     if (right >= left) {
         int mid = left + (right - left) / 2;
         if (arr[mid] == target) {

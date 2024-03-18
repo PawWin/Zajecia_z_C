@@ -1,5 +1,22 @@
 #include <stdio.h>
-void generate_permutations(int arr[], int left, int right) {
+
+void swap(int *a, int *b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int duplicate(const int *array, int i, int start){
+    for(int j = start; j < i; j++){
+        if (array[j] == array[i]){
+            return 1;
+        }
+    }
+    return 0;
+}
+
+
+void generate_permutations(int *arr, int left, int right) {
     if (left == right) {
         for (int i = 0; i <= right; i++) {
             printf("%d ", arr[i]);
@@ -7,21 +24,20 @@ void generate_permutations(int arr[], int left, int right) {
         printf("\n");
     } else {
         for (int i = left; i <= right; i++) {
-            //zamiana elemntow na indexach "lewy" i "i"
-            int temp = arr[left];
-            arr[left] = arr[i];
-            arr[i] = temp;
-            generate_permutations(arr, left + 1, right);
-            //zamiana elemntow na indexach "lewy" i "i" z powrotem na oryginalne pozycje
-            temp = arr[left];
-            arr[left] = arr[i];
-            arr[i] = temp;
+            int duplicateCheck = duplicate(arr, i, left);
+
+            if (!duplicateCheck) {
+                swap(&arr[left], &arr[i]);
+                generate_permutations(arr, left + 1, right);
+                // zmianna array z powrotem do oryginalnych pozycji
+                swap(&arr[left], &arr[i]);
+            }
         }
     }
 }
 
 int main() {
-    int arr[] = {1, 2, 3,4};
+    int arr[] = {1, 2, 3};
     int size = sizeof(arr) / sizeof(arr[0]);
     generate_permutations(arr, 0, size - 1);
     return 0;
