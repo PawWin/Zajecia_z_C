@@ -26,25 +26,25 @@ int calculateEnergySum(const char *filename, int option) {
     char* words[] = {"zero","one", "two", "three" ,"four", "five" ,"six" ,"seven", "eight", "nine"};
 
     int sum = 0;
-    char line[80];
+    char line[100];
 
     while (fgets(line, sizeof(line), file)) {
         line[strcspn(line, "\n")] = 0;
 
         int number_front = -1;
         int number_back = -1;
-        int actual_line_len = strlen(line);
+        int line_len = strlen(line);
 
         if (option == 1) {
             // Check from the beginning
-            for (int i = 0; i < actual_line_len; i++) {
+            for (int i = 0; i < line_len; i++) {
                 if (isdigit(line[i])) {
                     number_front = line[i] - '0';
                     break;
                 }
             }
             // Check from the end
-            for (int i = actual_line_len - 1; i >= 0; i--) {
+            for (int i = line_len - 1; i >= 0; i--) {
                 if (isdigit(line[i])) {
                     number_back = line[i] - '0';
                     break;
@@ -52,7 +52,7 @@ int calculateEnergySum(const char *filename, int option) {
             }
         } else if (option == 2) {
             // Check from the beginning and end for words
-            for (int i = 0; i < actual_line_len; i++) {
+            for (int i = 0; i < line_len; i++) {
                 if (isdigit(line[i])) {
                     number_front = line[i] - '0';
                     break;
@@ -68,7 +68,7 @@ int calculateEnergySum(const char *filename, int option) {
                     }
                 }
             }
-            for (int i = actual_line_len - 1; i >= 0; i--) {
+            for (int i = line_len - 1; i >= 0; i--) {
                 if (isdigit(line[i])) {
                     number_back = line[i] - '0';
                     break;
@@ -101,5 +101,7 @@ int main() {
     int energySum2 = calculateEnergySum(filename, 2);
     printf("II Suma wartosci energetycznych: %d\n", energySum2);
 
+    char stayclosed[999];
+    scanf("%s", stayclosed);
     return 0;
 }
